@@ -48,7 +48,7 @@ x = spain_fertility_df["Year"]
 y = spain_fertility_df["Fertility rate (period), historical"]
 
 # Perform linear fit
-coefficients = np.polyfit(x, y, 6)
+coefficients = np.polyfit(x, y, 10)
 print("Linear Fit Coefficients:", coefficients)
 
 # Create polynomial function
