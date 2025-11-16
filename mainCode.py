@@ -33,15 +33,6 @@ def get_spanish_fertility():
 
 spain_fertility_df = get_spanish_fertility()
 
-# print(spain_fertility_df)
-
-# def plot_fertility_women_graph():
-# #plotting both OECD women and UK same graph
-#     plot_fertility_graph= spain_fertility_df.plot(kind='line',y="Fertility rate (period), historical", label='Fertility rate (period), historical',  linestyle='-')
-#     plot_fertility_graph.set_title("Fertility rate in Spain  (1970-2018)")
-#     plt.show()
-
-# fertility_graph = plot_fertility_women_graph()
 
 max_year = 2015
 mask = spain_fertility_df["Year"] <= max_year
@@ -50,12 +41,14 @@ x_poly = spain_fertility_df["Year"]
 y_poly = spain_fertility_df["Fertility rate (period), historical"]
 
 
+
 x_df = spain_fertility_df.loc[mask, "Year"]
 y_df = spain_fertility_df.loc[mask, "Fertility rate (period), historical"]
 
 
+
 # Perform linear fit
-coefficients = np.polyfit(x_poly, y_poly, 10)
+coefficients = np.polyfit(x_poly, y_poly, deg=10, )
 print("Linear Fit Coefficients:", coefficients)
 
 # Create polynomial function
@@ -64,4 +57,18 @@ p = np.poly1d(coefficients)
 plt.scatter(x_df, y_df, label='Data Points')
 plt.plot(x_poly, p(x_poly), label='Linear Fit', color='red')
 plt.legend()
-plt.show()
+plt.errorbar(x_poly, y_poly, yerr=0.05, fmt='o', capsize=4, label="Data with error bars")
+
+
+# plt.show()
+
+#FIGURE 3
+sigma = 0.05 * y_poly
+
+
+y_pred = p(x_poly)
+plt.plot(x_poly, p(x_poly))
+
+#chi Squared calculation
+chi_squared = ((y_poly-y_pred)**2)/(sigma**2)
+print(chi_squared)
