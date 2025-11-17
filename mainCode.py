@@ -203,19 +203,64 @@ def polynomial_best_fit(x , y, sigma):
     plt.grid(True)
     plt.show()
 
+    
+def bayesian_infromation_crtierion(x, y, sigma):
+       #lists used in for loop
+
+   #for loop to incremeent degrees from 1 to 10 by increments of 0.5
+    degrees = [1, 2, 3, 4 , 5 , 6 , 7, 8, 9, 10 ]
+
+
+    bayesian_list = []
+
+
+    for d in degrees:
+        # Perform linear fit
+        coefficients = np.polyfit(x, y, deg = d )
+
+        # Create polynomial function
+        p = np.poly1d(coefficients)
+        y_pred = p(x)
+        
+        n= len(x)
+        k = d + 1
+
+        chi2 = np.sum(((y - y_pred) / sigma)**2)
+
+        bayesian= chi2 + k* np.log(n)
+
+        bayesian_list.append(bayesian)
+    
+
+    
+
+    plt.plot(degrees, bayesian_list, marker="o")
+    plt.xlabel("Weighted x\u00b2 per degrees of freedom")
+    plt.ylabel("Beyasian")
+    plt.title("Model comparison by polynomial order ")
+    plt.grid(True)
+    plt.show()
+
+
+
+
 
 #passed into functions above
 x = spain_fertility_df[x_axis]
 y = spain_fertility_df[y_axis]
 
 
+#bayesian 
+
 
 
 if __name__ == "__main__":
 
-    plot_prediction_graph(x, y, degree= 6)
+    # plot_prediction_graph(x, y, degree= 6)
 
-    plot_full_graph(x, y, degree=6)
+    # plot_full_graph(x, y, degree=6)
 
-    polynomial_best_fit(x , y, 0.05*y)
+   # polynomial_best_fit(x , y, 0.05*y)
+
+    bayesian_infromation_crtierion(x, y, 0.05*y)
 
