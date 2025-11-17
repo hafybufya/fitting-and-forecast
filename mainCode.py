@@ -7,7 +7,7 @@ import numpy as np
 import numpy as np
 
 # ---------------------------------------------------------------------
-# Defined CSV file name and column used in program
+# Defined CSV file name and columns as well as colors used in program
 #  -> make the code flexible if used dataset changed
 #  -> or to reuse the same function for a different file.
 # ---------------------------------------------------------------------
@@ -15,6 +15,7 @@ import numpy as np
 csv_in_use = "children-born-per-woman.csv"
 x_axis = "Year"
 y_axis = "Fertility rate (period), historical"
+color_1 = "#FF0000"
 
 
 def read_fertility():
@@ -106,7 +107,10 @@ def plot_prediction_graph(x, y, degree):
     p = np.poly1d(coefficients)
 
     plt.scatter(x_sample, y_sample, label='Historial Data')
-    plt.plot(x, p(x), label=f'Polynomial order {degree}', color='red')
+    plt.plot(x, p(x), label=f'Polynomial order {degree}', color=color_1)
+    plt.title("Spanish Fertility Data. Weighed Polynomial fits comparison.")
+    plt.xlabel("Year")
+    plt.ylabel("Fertility rate (period)")
     plt.legend()
     plt.show()
     
@@ -136,7 +140,10 @@ def plot_full_graph(x, y, degree ):
     p = np.poly1d(coefficients)
 
     plt.scatter(x, y, label='Historial Data')
-    plt.plot(x, p(x), label=f'Polynomial order {degree}', color='red')
+    plt.plot(x, p(x), label=f'Polynomial order {degree}', color=color_1)
+    plt.title("Spanish Fertility Data. Weighed Polynomial fits comparison.")
+    plt.xlabel("Year")
+    plt.ylabel("Fertility rate (period)")
     plt.legend()
     plt.show()
 
@@ -191,7 +198,7 @@ def polynomial_best_fit(x , y, sigma):
 
     plt.plot(degrees, chi2_reduced_list, marker="o")
     plt.xlabel("Polynomial order (n)")
-    plt.ylabel("Weighted x**2 per degrees of freedom")
+    plt.ylabel("Weighted x\u00b2 per degrees of freedom")
     plt.title("Model comparison by polynomial order ")
     plt.grid(True)
     plt.show()
