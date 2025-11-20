@@ -310,8 +310,16 @@ def standardize(x):
 x = standardize(x)
 
 
-print("\nCovariance matrix of the said arrays:\n",
-      np.cov(x, y))
+#how correlated x and y are
+# print("\nCovariance matrix of the said arrays:\n",
+#       np.cov(x, y))
+
+
+coeffs, cov = np.polyfit(x, y, deg=2, cov=True)
+
+#taking two diagnoals to calculte square root two nested for loosp 
+print("Polynomial coefficients:\n", coeffs)
+print("\nCovariance matrix of coefficients:\n", cov)
 
 if __name__ == "__main__":
 
@@ -319,7 +327,7 @@ if __name__ == "__main__":
 
     plot_full_graph(x, y, degree=6)
 
-    polynomial_best_fit(x , y, 0.05*y)
+    # polynomial_best_fit(x , y, 0.05*y)
 
-    bayesian_infromation_crtierion(x, y, 0.05*y)
+    # bayesian_infromation_crtierion(x, y, 0.05*y)
 
