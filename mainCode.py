@@ -23,7 +23,7 @@ def read_fertility():
     
     """
 
-    Loads the fertility dataset definied in 'csv_in_use'
+    Loads the fertility dataset defined in 'csv_in_use'
 
     Returns
     -------
