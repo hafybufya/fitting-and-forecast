@@ -94,7 +94,7 @@ def plot_prediction_graph(x, y, degree):
     y = np.array(y)
 
 
-    #mask applied to subsample all but the last ten years of data
+    # Mask applied to subsample all but the last ten years of data
     cutoff_year = x.max() - 10
 
     mask_sample = x <= cutoff_year
@@ -184,13 +184,13 @@ def polynomial_best_fit(x , y, sigma):
 
     """
    
-# ---------------------------------------------------------------------
-# Lists used in loops
-#  -> lists used to create graphs 
-# ---------------------------------------------------------------------
+    # ---------------------------------------------------------------------
+    # Lists used in loops
+    #  -> lists used to create graphs 
+    # ---------------------------------------------------------------------
 
-      #for loop to incremeent degrees from 1 to 10 by increments of 0.5
-    degrees = [x for x in np.arange(1, 20)] 
+    # For loop to incerement degrees from 1 to 12
+    degrees = [x for x in np.arange(1, 12)] 
 
     chi2_list = []
 
@@ -222,8 +222,10 @@ def polynomial_best_fit(x , y, sigma):
     plt.grid(True)
     plt.show()
 
+    return degrees, chi2_list, chi2_reduced_list, chi2
+
     
-def bayesian_infromation_crtierion(x, y, sigma):
+def bayesian_infromation_crtierion(x, y, sigma, degrees, chi2_list):
 
     """
 
@@ -260,33 +262,21 @@ def bayesian_infromation_crtierion(x, y, sigma):
     #  -> lists used to create graphs 
     # ---------------------------------------------------------------------
 
-   #for loop to incremeent degrees from 1 to 10 by increments of 0.5
-    degrees = [x for x in np.arange(1, 45)] 
-
 
     bayesian_list = []
 
 
-    for d in degrees:
-        # Perform linear fit
-        coefficients = np.polyfit(x, y, deg = d )
+    for i, d in enumerate(degrees):
 
-        # Create polynomial function
-        p = np.poly1d(coefficients)
-        y_pred = p(x)
-        
         k= len(x)
         N = d + 1
 
-        chi2 = np.sum(((y - y_pred) / sigma)**2)
-
-        bayesian= chi2 + N* np.log(k)
+        chi2= chi2_list[i]
+        bayesian= chi2 + N*np.log(k)
 
         bayesian_list.append(bayesian)
     
-
     
-
     plt.plot(degrees, bayesian_list, marker="o")
     plt.xlabel("Polynomial order (n)")
     plt.ylabel("BIC")
@@ -295,7 +285,7 @@ def bayesian_infromation_crtierion(x, y, sigma):
     plt.show()
 
 
-#passed into functions above
+# Passed into functions above
 x = spain_fertility_df[x_axis]
 y = spain_fertility_df[y_axis]
 
@@ -327,7 +317,7 @@ if __name__ == "__main__":
 
     plot_full_graph(x, y, degree=6)
 
-    # polynomial_best_fit(x , y, 0.05*y)
+    degrees, chi2_list, chi2_reduced_list, chi2 = polynomial_best_fit(x, y, 0.05*y)
 
-    # bayesian_infromation_crtierion(x, y, 0.05*y)
+    bayesian_infromation_crtierion(x, y, 0.05*y, degrees, chi2_list)
 
