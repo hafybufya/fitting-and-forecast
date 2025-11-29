@@ -38,7 +38,7 @@ Python modules required:
 You can install required packages with:
 
 ```
-pip install time pandas matplotlib numpy
+pip install time pandas matplotlib numpy os
 
 ```
 
