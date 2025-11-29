@@ -5,7 +5,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import numpy as np
 
 # ---------------------------------------------------------------------
 # Defined CSV file name and columns as well as colors used in program
@@ -13,7 +12,7 @@ import numpy as np
 #  -> or to reuse the same function for a different file.
 # ---------------------------------------------------------------------
 
-csv_in_use = "children-born-per-woman.csv"
+csv_in_use = "childrenBornPerWoman.csv"
 x_axis = "Year"
 y_axis = "Fertility rate (period), historical"
 color_1 = "#FF0000"
@@ -282,9 +281,9 @@ y = spain_fertility_df[y_axis]
 
 if __name__ == "__main__":
 
-    # plot_prediction_graph(x, y, degree= 6)
+    plot_prediction_graph(x, y, degree= 6)
 
-    # plot_full_graph(x, y, degree=6)
+    plot_full_graph(x, y, degree=6)
 
     polynomial_best_fit(x , y, 0.05*y)
 
