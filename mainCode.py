@@ -18,6 +18,10 @@ y_axis = "Fertility rate (period), historical"
 color_1 = "#FF0000"
 
 
+## ---------------------------------------------------------------------
+# FUNCTION: Read CSV data into Dataframe
+# ---------------------------------------------------------------------
+
 def read_fertility():
     
     """
@@ -39,6 +43,9 @@ def read_fertility():
 fertility_df = read_fertility()
 
 
+# ---------------------------------------------------------------------
+# FUNCTION: Filters to only get Spanish data from Dataframe
+# ---------------------------------------------------------------------
 
 def get_spanish_fertility():
     """
@@ -63,6 +70,10 @@ def get_spanish_fertility():
 # Calls function so to be used in scatter plots
 spain_fertility_df = get_spanish_fertility()
 
+
+# ---------------------------------------------------------------------
+# FUNCTION: Plots a prediction graph
+# ---------------------------------------------------------------------
 
 def plot_prediction_graph(x, y, degree):
     """
@@ -109,6 +120,10 @@ def plot_prediction_graph(x, y, degree):
     plt.show()
     
 
+# ---------------------------------------------------------------------
+# FUNCTION: Plots a graph with historical and polynomial data
+# ---------------------------------------------------------------------
+
 def plot_full_graph(x, y, degree ):
 
     """
@@ -140,6 +155,9 @@ def plot_full_graph(x, y, degree ):
     plt.legend()
     plt.show()
 
+# ---------------------------------------------------------------------
+# FUNCTION: Plots polynomial against chisquared
+# ---------------------------------------------------------------------
 
 def polynomial_best_fit(x , y, sigma):
     """
@@ -165,12 +183,10 @@ def polynomial_best_fit(x , y, sigma):
 
     """
    
-# ---------------------------------------------------------------------
-# Lists used in loops
-#  -> lists used to create graphs 
-# ---------------------------------------------------------------------
 
-      #for loop to incremeent degrees from 1 to 10 by increments of 0.5
+# Lists used in loops
+    
+    # For loop to incremeent degrees from 1 to 10 by increments of 0.5
     degrees = [x for x in np.arange(1, 10.5, 0.5)] 
 
     chi2_list = []
@@ -203,6 +219,9 @@ def polynomial_best_fit(x , y, sigma):
     plt.grid(True)
     plt.show()
 
+# ---------------------------------------------------------------------
+# FUNCTION:Plots BIC graph
+# ---------------------------------------------------------------------
     
 def bayesian_infromation_crtierion(x, y, sigma):
 
@@ -230,11 +249,9 @@ def bayesian_infromation_crtierion(x, y, sigma):
     """
    
 
-    # ---------------------------------------------------------------------
-    # Lists used in loops
-    #  -> lists used to create graphs 
-    # ---------------------------------------------------------------------
-
+    
+    # Lists used to create graphs 
+    
    #for loop to incremeent degrees from 1 to 10 by increments of 0.5
     degrees = [1, 2, 3, 4 , 5 , 6 , 7, 8, 9, 10 ]
 
@@ -273,7 +290,7 @@ def bayesian_infromation_crtierion(x, y, sigma):
 
 
 
-#passed into functions above
+# Passed into functions above
 x = spain_fertility_df[x_axis]
 y = spain_fertility_df[y_axis]
 
