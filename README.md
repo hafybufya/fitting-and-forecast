@@ -43,5 +43,5 @@ pip install time pandas matplotlib numpy
 
 
 ## 📄 License
-This project is open source and available under the [MIT License](https://github.com/hafybufya/daily-price-change-sorting/blob/main/LICENSE).
+This project is open source and available under the [MIT License](https://github.com/hafybufya/fitting-and-forecast/blob/main/LICENSE).
 
