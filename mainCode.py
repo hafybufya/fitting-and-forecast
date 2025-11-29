@@ -68,7 +68,7 @@ spain_fertility_df = get_spanish_fertility()
 def plot_prediction_graph(x, y, degree):
     """
 
-    Creates a plot containing both historical data sub-sampled all but the past 10 years and polynomial function 
+    Creates a line plot containing both historical data sub-sampled all but the past 10 years and polynomial function 
 
     
     Parameters
@@ -77,13 +77,6 @@ def plot_prediction_graph(x, y, degree):
     x :      Year from df, array
     y :      Fertility rate from df, array
     degree : Passed into function, integer
-
-    
-    Returns
-    -------
-
-    matplotlib line and scatter graph and -> historical data and polynomial plotted on the same chart. 
-                                
 
     """
 
@@ -121,7 +114,7 @@ def plot_full_graph(x, y, degree ):
 
     """
 
-    Creates a plot containing both historical and polynomial data over all years in the dataset
+    Creates a scatter plot containing both historical and polynomial data over all years in the dataset
 
 
     Parameters
@@ -130,13 +123,7 @@ def plot_full_graph(x, y, degree ):
     x :      Year from df, array
     y :      Fertility rate from df, array
     degree : Passed into function, integer
-
-
-    Returns
-    -------
-
-    matplotlib line and scatter graph -> historical data and polynomial plotted on the same chart. 
-                                
+                         
 
     """
 
@@ -176,10 +163,6 @@ def polynomial_best_fit(x , y, sigma):
         - dof = len(x) - (d + 1)
     Calculate reduced chisquared
         - chi²_red = chi² / dof
-
-    Returns:
-    matplotlib line graph -> plots degree vs reduced chi-squared on the same chart. 
-                                Aids with showing which polynomial is the best fit for historical data.
 
     """
    
@@ -244,12 +227,6 @@ def bayesian_infromation_crtierion(x, y, sigma):
         - BIC = k * ln(N) + chi²
         - k = number of observation OR len(x)
         - N = number of paramaters  OR degrees + 1
-
-    Returns
-    -------
-
-    matplotlib line graph -> plots degree vs BIC on the same chart. 
-                                Aids in determining best fit for polynomial data
 
     """
    
