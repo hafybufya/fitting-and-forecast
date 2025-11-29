@@ -33,7 +33,7 @@ Python modules required:
 * pandas – reading and handling CSV files.
 * matplotlib – plotting graphs
 * numpy – preforming numpy sort.
-* * os - checking if files exist.
+* os - checking if files exist.
 
 You can install required packages with:
 
